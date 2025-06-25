@@ -25,7 +25,7 @@ BoltPart.Material = Enum.Material.Neon
 BoltPart.Color = Color3.new(1, 1, 1)
 BoltPart.Transparency = 1
 
-local PartCache = game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/Cache/PartCache.lua', true)
+local PartCache = game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/Cache/PartCache.lua', "Cache")
 local LightningCache = PartCache.new(BoltPart, PARTS_IN_CACHE)
 LightningCache:SetCacheParent(parent)
 
