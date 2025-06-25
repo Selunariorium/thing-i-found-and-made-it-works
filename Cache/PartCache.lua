@@ -129,7 +129,7 @@ end
 
 -- Returns a part to the cache.
 function PartCacheStatic:ReturnPart(part: BasePart)
-	if part == nil then return end
+	if not part then return end
 	assert(getmetatable(self) == PartCacheStatic, ERR_NOT_INSTANCE:format("ReturnPart", "PartCache.new"))
 	
 	local index = table.indexOf(self.InUse, part)
