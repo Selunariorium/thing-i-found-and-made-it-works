@@ -131,7 +131,7 @@ end
 function PartCacheStatic:ReturnPart(part: BasePart)
 	assert(getmetatable(self) == PartCacheStatic, ERR_NOT_INSTANCE:format("ReturnPart", "PartCache.new"))
 	
-	local index = table.indexOf(self.InUse, part)
+	local index = tab.indexOf(self.InUse, part)
 	if index ~= nil then
 		table.remove(self.InUse, index)
 		table.insert(self.Open, part)
