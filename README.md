@@ -29,7 +29,7 @@ Table of contents
       * [LightningBolt](#lightningbolt)
       * [LightningSparks](#lightningsparks)
       * [LightningExplosion](#lightningexplosion)
-   * [Downloads](#downloads)
+   * [Original](https://devforum.roblox.com/t/effect-v11-lightning-beams-seamless-smooth-and-procedurally-animated-with-beam-like-properties/843534)
 <!--te-->
 
 Showcase
