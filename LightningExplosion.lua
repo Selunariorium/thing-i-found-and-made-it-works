@@ -7,32 +7,32 @@ local rng_v = Random.new()
 local clock = os.clock
 
 function RandomVectorOffsetBetween(v, minAngle, maxAngle) --returns uniformly-distributed random unit vector no more than maxAngle radians away from v and no less than minAngle radians
-    return (CFrame.lookAt(Vector3.new(), v)*CFrame.Angles(0, 0, rng_v:NextNumber(0, 2*math.pi))*CFrame.Angles(math.acos(rng_v:NextNumber(math.cos(maxAngle), math.cos(minAngle))), 0, 0)).LookVector
+	return (CFrame.lookAt(Vector3.new(), v)*CFrame.Angles(0, 0, rng_v:NextNumber(0, 2*math.pi))*CFrame.Angles(math.acos(rng_v:NextNumber(math.cos(maxAngle), math.cos(minAngle))), 0, 0)).LookVector
 end
 
 
 local ActiveExplosions = {}
 
-
 local LightningExplosion = {}
 LightningExplosion.__index = LightningExplosion
+
+local ExplosionBrightspot = Instance.new('ParticleEmitter')
+local GlareEmitter = Instance.new('ParticleEmitter')
+local PlasmaEmitter = Instance.new('ParticleEmitter')
 
 function LightningExplosion.new(Position, Size, NumBolts, Color, BoltColor, UpVector)
 	local self = setmetatable({}, LightningExplosion)
 	
 	--Main (default) Properties--
-	
-		self.Size = Size or 1 --Value between 0 and 1 (1 for largest)
-		self.NumBolts = NumBolts or 14 --Number of lightning bolts shot out from explosion
-		self.Color = Color or ColorSequence.new(Color3.new(1, 0, 0), Color3.new(0, 0, 1)) --Can be a Color3 or ColorSequence
-		self.BoltColor = BoltColor or Color3.new(0.3, 0.3, 1) --Can be a Color3 or ColorSequence
-		self.UpVector = UpVector or Vector3.new(0, 1, 0) --Can be used to "rotate" the explosion
-	
-	--
+	self.Size = Size or 1 --Value between 0 and 1 (1 for largest)
+	self.NumBolts = NumBolts or 14 --Number of lightning bolts shot out from explosion
+	self.Color = Color or ColorSequence.new(Color3.new(1, 0, 0), Color3.new(0, 0, 1)) --Can be a Color3 or ColorSequence
+	self.BoltColor = BoltColor or Color3.new(0.3, 0.3, 1) --Can be a Color3 or ColorSequence
+	self.UpVector = UpVector or Vector3.new(0, 1, 0) --Can be used to "rotate" the explosion
 	
 	local parent = workspace.CurrentCamera
 	
-	local part = Instance.new("Part")
+	local part = Instance.new("Part", parent)
 	part.Name = "LightningExplosion"
 	part.Anchored = true
 	part.CanCollide = false
@@ -41,15 +41,14 @@ function LightningExplosion.new(Position, Size, NumBolts, Color, BoltColor, UpVe
 	part.Transparency = 1
 	part.Size = Vector3.new(0.05, 0.05, 0.05)
 	part.CFrame = CFrame.lookAt(Position + Vector3.new(0, 0.5, 0), Position + Vector3.new(0, 0.5, 0) + self.UpVector)*CFrame.lookAt(Vector3.new(), Vector3.new(0, 1, 0)):inverse()
-	part.Parent = parent
 	
 	local attach = Instance.new("Attachment")
 	attach.Parent = part
 	attach.CFrame = CFrame.new()
 	
-	local partEmit1 = script.ExplosionBrightspot:Clone()
-	local partEmit2 = script.GlareEmitter:Clone()
-	local partEmit3 = script.PlasmaEmitter:Clone()
+	local partEmit1 = ExplosionBrightspot:Clone()
+	local partEmit2 = GlareEmitter:Clone()
+	local partEmit3 = PlasmaEmitter:Clone()
 	
 	local size = math.clamp(self.Size, 0, 1)
 	
@@ -130,10 +129,8 @@ function LightningExplosion:Destroy()
 	self = nil
 end
 
-game:GetService("RunService").Heartbeat:Connect(function ()
-	
+game:GetService("RunService").Heartbeat:Connect(function()
 	for _, ThisExplosion in pairs(ActiveExplosions) do
-		
 		local timePassed = clock() - ThisExplosion.StartT
 		local attach = ThisExplosion.Attachment
 		
@@ -144,24 +141,14 @@ game:GetService("RunService").Heartbeat:Connect(function ()
 			end
 			
 			for i = 1, #ThisExplosion.Bolts do 
-				
 				local currBolt = ThisExplosion.Bolts[i]
 				currBolt.Attachment1.WorldPosition = currBolt.Attachment1.WorldPosition + currBolt.Velocity
 				--currBolt.CurveSize0, currBolt.CurveSize1 = currBolt.CurveSize0 + currBolt.v0, currBolt.CurveSize1 + currBolt.v1
-				
 			end
-			
 		else
-			
 			ThisExplosion:Destroy()
-			
 		end
-		
 	end
-	
 end)
-
-
-
 
 return LightningExplosion
