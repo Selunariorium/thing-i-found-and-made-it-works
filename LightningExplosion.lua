@@ -17,8 +17,11 @@ local LightningExplosion = {}
 LightningExplosion.__index = LightningExplosion
 
 local ExplosionBrightspot = Instance.new('ParticleEmitter')
+ExplosionBrightspot.Speed = NumberRange.new(0.001)
 local GlareEmitter = Instance.new('ParticleEmitter')
+GlareEmitter.Speed = NumberRange.new(0.001)
 local PlasmaEmitter = Instance.new('ParticleEmitter')
+PlasmaEmitter.Speed = NumberRange.new(0.001)
 
 function LightningExplosion.new(Position, Size, NumBolts, Color, BoltColor, UpVector)
 	local self = setmetatable({}, LightningExplosion)
