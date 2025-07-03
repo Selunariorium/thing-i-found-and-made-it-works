@@ -121,11 +121,7 @@ end
 function LightningExplosion:Destroy()
 	ActiveExplosions[self.RefIndex] = nil
 	self.Part:Destroy()
-	
-	for i = 1, #self.Bolts do
-		self.Bolts[i] = nil
-	end
-	
+	self.Bolts = nil
 	self = nil
 end
 
