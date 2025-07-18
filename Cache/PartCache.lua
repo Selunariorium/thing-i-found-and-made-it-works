@@ -20,7 +20,7 @@
 	
 	Look at the bottom of my thread for an API! https://devforum.roblox.com/t/partcache-for-all-your-quick-part-creation-needs/246641
 --]]
-local tab = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/Cache/Table.lua', 'Table'))()
+local tab = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/Cache/Table.lua', true))()
 
 -----------------------------------------------------------
 -------------------- MODULE DEFINITION --------------------
