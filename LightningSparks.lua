@@ -1,5 +1,5 @@
 --Adds sparks effect to a Lightning Bolt
-local LightningBolt = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningBolt.lua', 'Bolt'))()
+local LightningBolt = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningBolt.lua', true))()
 
 local ActiveSparks = {}
 
