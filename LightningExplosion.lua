@@ -1,7 +1,7 @@
 --Properties do not update in realtime here
 --i.e. You can't change explosion properties at any time beyond the initial function execution
-local LightningBolt = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningBolt.lua', 'Bolt'))()
-local LightningSparks = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningSparks.lua', 'Sparks'))()
+local LightningBolt = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningBolt.lua', true))()
+local LightningSparks = loadstring(game:HttpGet('https://raw.githubusercontent.com/Selunariorium/thing-i-found-and-made-it-works/refs/heads/main/LightningSparks.lua', true))()
 
 local rng_v = Random.new()
 local clock = os.clock
